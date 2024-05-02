@@ -1,0 +1,20 @@
+<h1> Order at Pizza Palace!!!</h1>
+<h2>{{ note }}</h2>
+<br>
+{% if created_pizza_id %}
+<a href="{% url 'edit_order' created_pizza_id %}">Edit your last order</a>
+{% endif %}
+
+<form method="post" action="{% url 'order' %}" novalidate> {% csrf_token %}
+    {{ pizzaform.as_p }}
+    <input type="submit" value="Place Your Order -> ">
+</form>
+
+<br><br>
+
+Want more than one pizza?
+
+<form action="{% url 'pizzas' %}" method="get">
+    {{multiple_form}}
+    <input type="submit" value="Select your pizza'S' -> ">
+</form>
